@@ -1,6 +1,7 @@
 import os
 import xml.etree.ElementTree as ET
 from analysis.visualization.pie import Pie
+import numpy as np
 
 
 def label_analysis(root_path, classes=None):
@@ -38,12 +39,14 @@ def label_analysis(root_path, classes=None):
             # total image number
             elif item.split('.')[-1].lower() in ["jpg", "jpeg", "png"]:
                 img_quantity += 1
-    print(img_quantity)
+    print("this folder has {} total".format(img_quantity))
+    label_quantity_per_image = np.asarray(label_quantity_per_image)
+    print("{} images contain required label".format(len(label_quantity_per_image[label_quantity_per_image > 0])))
     pie_graph = Pie()
     pie_graph.pic_for_dict(label_quantity_per_class)
     for item in sorted(label_quantity_per_class.items(), key=lambda k: k[1], reverse = True):
         print("{}:{}".format(item[0], item[1]))
 
 
-if __name__=="__main__":
-    label_analysis("D:/shudian")
+if __name__ == "__main__":
+    label_analysis("E:/Data/biandian/2019-biandian-9029", classes=["jsxs"])

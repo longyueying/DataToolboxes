@@ -2,7 +2,7 @@ import os
 import xml.etree.ElementTree as ET
 
 
-def label_analysis(root_path, classes=None):
+def select_by_classes(root_path, classes=None):
     """
     :param root_path:
     :param classes:
@@ -43,7 +43,7 @@ def label_analysis(root_path, classes=None):
             # total image number
             elif item.split('.')[-1].lower() in ["jpg", "jpeg", "png"]:
                 img_quantity += 1
-    with open("./results/class_select_result.txt", "w") as f:
+    with open("results/select_result.txt", "w") as f:
         for filename in class_select_filenames:
             f.write(filename + '\n')
     print(img_quantity)
@@ -52,4 +52,4 @@ def label_analysis(root_path, classes=None):
 
 
 if __name__=="__main__":
-    label_analysis("D:/biandian/Annotations", ['yw_gkxfw'])
+    select_by_classes("C:/Users/zxh/Desktop/yw_biandian/Annotations", ['yw_gkxfw'])

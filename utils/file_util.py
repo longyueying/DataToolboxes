@@ -36,22 +36,28 @@ def path_generator(txt_path,
 
 
 def unit_test_path_generator():
-    txt_path = "results/class_select_result.txt"
+    txt_path = "../process/select/results/biandian_select_result.txt"
     source_annotations_path = "E:/Data/biandian/2019-biandian-1936/Annotations"
     source_images_path = "E:/Data/biandian/2019-biandian-1936/JPEGImages"
-    target_annotations_path = "../tmp/Annotations"
-    target_images_path = "../tmp/JPEGImages"
+    target_annotations_path = "../process/tmp/Annotations"
+    target_images_path = "../process/tmp/JPEGImages"
     for source_xml_path, source_image_path, target_xml_path, target_image_path \
-            in path_generator(txt_path, source_annotations_path, source_images_path, target_annotations_path, target_images_path):
+            in path_generator(txt_path, source_annotations_path, source_images_path,target_annotations_path, target_images_path):
         print(source_xml_path)
         print(source_image_path)
         print(target_xml_path)
         print(target_image_path)
 
 
-def cp_files(txt_path, source_annotations_path, source_images_path, target_annotations_path, target_images_path):
+def cp_files(txt_path,
+             source_annotations_path,
+             source_images_path,
+             target_annotations_path,
+             target_images_path,
+             rm_origin_path=False):
     for source_xml_path, source_image_path, target_xml_path, target_image_path \
-            in path_generator(txt_path, source_annotations_path, source_images_path, target_annotations_path, target_images_path):
+            in path_generator(txt_path, source_annotations_path, source_images_path,
+                              target_annotations_path, target_images_path, rm_origin_path):
         print("copying {} and {}".format(source_image_path, source_xml_path))
         shutil.copy(source_xml_path, target_xml_path)
         shutil.copy(source_image_path, target_image_path)
@@ -60,7 +66,7 @@ def cp_files(txt_path, source_annotations_path, source_images_path, target_annot
 def delete_files(txt_path, source_annotations_path, source_images_path):
     for source_xml_path, source_image_path, target_xml_path, target_image_path \
             in path_generator(txt_path, source_annotations_path, source_images_path, "./", "./"):
-        print("copying {} and {}".format(source_image_path, source_xml_path))
+        print("deleting {} and {}".format(source_image_path, source_xml_path))
         os.remove(source_xml_path)
         os.remove(source_image_path)
 
