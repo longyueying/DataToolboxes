@@ -28,10 +28,15 @@ def classes_mapping(root_path, mapping_dict, signature):
         else:
             source_file = os.path.join(current_path, xml_name)
             target_path = os.path.join(target_path, xml_name)
-            with open(source_file, "r", encoding="utf-8") as f:
-                pass
-
+            tree = ET.parse(source_file)
+            tree_root = tree.getroot()
+            for obj in tree_root.iter('object'):
+                obj_class = obj.find("name")
+                if obj_class.text in mapping_dict.keys():
+                    new_class = mapping_dict[obj_class.text]
+                    obj_class.text = new_class
+            tree.write(target_path)
 
 
 if __name__ == "__main__":
-    classes_mapping("E:/Data/biandian/2019-biandian-1936/Annotations", {}, "e")
+    classes_mapping("../tmp", {"dxyw": "yw_gkxfw"}, "yw")

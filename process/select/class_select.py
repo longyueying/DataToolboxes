@@ -51,5 +51,5 @@ def select_by_classes(root_path, classes=None):
         print("{}:{}".format(item[0], item[1]))
 
 
-if __name__=="__main__":
-    select_by_classes("C:/Users/zxh/Desktop/yw_biandian/Annotations", ['yw_gkxfw'])
+if __name__ == "__main__":
+    select_by_classes("../../tmp/Annotations_yw", ['yw_gkxfw'])
