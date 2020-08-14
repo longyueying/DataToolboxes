@@ -14,6 +14,7 @@ def select_by_classes(root_path, classes=None):
     label_quantity_per_class = {}
     label_quantity_per_image = []
     class_select_filenames = []
+    feihua_item = []
 
     # traverse root path
     while path_queue:
@@ -52,4 +53,9 @@ def select_by_classes(root_path, classes=None):
 
 
 if __name__ == "__main__":
-    select_by_classes("../../tmp/Annotations_yw", ['yw_gkxfw'])
+    # labels = ['hxq_gjbs', 'hxq_yfps', 'yw_nc', 'yw_gkxfw', 'jyz_pl', 'xmbhyc']
+    # select_by_classes("E:/Data/biandian/2019-biandian-9029", ['hxq_gjbs'])
+    # select_by_classes("C:/Users/zxh/Desktop/biandian/Annotations", labels)
+    # select_by_classes("F:/安监数据集/Annotations_filter", ['wcgz', 'wcaqm', 'YanHuo', 'xy', 'yxxw', 'dmxw', 'ppxw'])
+    labels = ['redbox']
+    select_by_classes('E:/Data/transit', labels)

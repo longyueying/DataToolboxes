@@ -11,7 +11,7 @@ class Pie:
         return "{:.1f}%".format(pct)
 
     def pic_for_dict(self, data):
-        data = sorted(data.items(), key=lambda k: k[1], reverse = True)
+        data = sorted(data.items(), key=lambda k: k[1], reverse=True)
         vals = [item[1] for item in data]
         ingredients = ["{:<10d}:{}".format(item[1], item[0]) for item in data]
 
