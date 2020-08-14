@@ -1,61 +1,38 @@
 import os
 import xml.etree.ElementTree as ET
+from tqdm import tqdm
+from utils.xml_util import xml_path_generator
+from analysis.data.label_analysis import get_xml_number
 
 
-def select_by_classes(root_path, classes=None):
-    """
-    :param root_path:
-    :param classes:
-    :return:
-    """
-    # initialization
-    path_queue = [root_path]
-    img_quantity = 0
-    label_quantity_per_class = {}
-    label_quantity_per_image = []
-    class_select_filenames = []
-    feihua_item = []
-
-    # traverse root path
-    while path_queue:
-        current_path = path_queue.pop(0)
-        for item in os.listdir(current_path):
-            item = os.path.join(current_path, item)
-            if os.path.isdir(item):
-                path_queue.append(item)
-            # quantity of each annotation class
-            elif item.split('.')[-1].lower() == "xml":
-                with open(item, encoding="utf-8") as file:
-                    label_quantity_image = 0
-                    tree = ET.parse(file)
-                    tree_root = tree.getroot()
-                    flag = False
-                    for obj in tree_root.iter('object'):
-                        cls = obj.find("name").text
-                        if classes is None or cls in classes:
-                            flag = True
-                            label_quantity_per_class.setdefault(cls, 0)
-                            label_quantity_per_class[cls] += 1
-                            label_quantity_image += 1
-                    label_quantity_per_image.append(label_quantity_image)
-                if flag:
-                    filename = item.split('\\')[-1].split('/')[-1].split('.')[0]
-                    class_select_filenames.append(filename)
-            # total image number
-            elif item.split('.')[-1].lower() in ["jpg", "jpeg", "png"]:
-                img_quantity += 1
-    with open("results/select_result.txt", "w") as f:
-        for filename in class_select_filenames:
-            f.write(filename + '\n')
-    print(img_quantity)
-    for item in sorted(label_quantity_per_class.items(), key=lambda k: k[1], reverse = True):
-        print("{}:{}".format(item[0], item[1]))
+def select_by_classes(root_path_list, classes=None):
+    # 初始化
+    root_path_list = root_path_list.copy()
+    xml_number_total = get_xml_number(root_path_list)
+    xml_selected_list = []
+    # 遍历xml文件
+    for path, name in tqdm(xml_path_generator(root_path_list), total=xml_number_total):
+        xml_path = os.path.join(path, name)
+        with open(xml_path, encoding='utf-8') as f:
+            tree = ET.parse(f)
+            tree_root = tree.getroot()
+            flag_select = False
+            for obj in tree_root.iter('object'):
+                cls = obj.find("name").text
+                if classes is None or cls in classes:
+                    flag_select = True
+                    break
+            if flag_select:
+                sub_root_path = path[:path.find(path.split("\\")[-1].split('/')[-1]) - 1]
+                name = name.split('.')[0]
+                xml_selected_list.append(f'{sub_root_path},{name}')
+    # 输出统计信息
+    print(f"{len(xml_selected_list)}/{xml_number_total} files have be selected")
+    # 写入文件
+    with open("../../result/select_by_classes.txt", 'w', encoding='utf-8') as f:
+        f.write('\n'.join(xml_selected_list))
 
 
 if __name__ == "__main__":
-    # labels = ['hxq_gjbs', 'hxq_yfps', 'yw_nc', 'yw_gkxfw', 'jyz_pl', 'xmbhyc']
-    # select_by_classes("E:/Data/biandian/2019-biandian-9029", ['hxq_gjbs'])
-    # select_by_classes("C:/Users/zxh/Desktop/biandian/Annotations", labels)
-    # select_by_classes("F:/安监数据集/Annotations_filter", ['wcgz', 'wcaqm', 'YanHuo', 'xy', 'yxxw', 'dmxw', 'ppxw'])
-    labels = ['redbox']
-    select_by_classes('E:/Data/transit', labels)
+    labels = ['ganta_02']
+    select_by_classes(["E:/Data/shudian/201912-wuhan/dingwei"], labels)
