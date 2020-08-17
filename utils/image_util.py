@@ -17,3 +17,11 @@ def image_path_generator(root_path_list):
                 path_queue.append(item)
             elif item.split('.')[-1].lower() in ['png', 'jpg', 'jpeg']:
                 yield current_path, current_name
+
+
+def image_rename(root_path_list):
+    for path, name in image_path_generator(root_path_list):
+        if '.JPG' in name or '.JPEG' in name or '.jpeg' in name:
+            file_path = os.path.join(path, name)
+            file_path_rename = file_path.replace(".JPG", ".jpg").replace('.JPEG', '.jpg').replace('.jpeg', '.jpg')
+            os.rename(file_path, file_path_rename)
