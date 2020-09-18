@@ -1,7 +1,9 @@
-from utils.image_util import *
+from utils.image_util import image_path_generator
+import os
 from PIL import Image
 from tqdm import tqdm
 from analysis.data.image_analysis import get_image_number
+import piexif
 
 
 def valid_checkup(root_path_list):
@@ -32,9 +34,27 @@ def postfix_checkup(root_path_list):
             postfix_invalid_list.append(f'{sub_root_path},{name}')
     with open("../result/postfix_invalid_images.txt", 'w', encoding='utf-8') as f:
         f.write('\n'.join(postfix_invalid_list))
-    print("There are {}/{} images broken".format(len(postfix_invalid_list), length))
+    print("There are {}/{} images have invalid postfix".format(len(postfix_invalid_list), length))
+
+
+def orientation_tag_checkup(root_path_list):
+    orientation_tag_detected_list = []
+    length = get_image_number(root_path_list)
+
+    for path, name in tqdm(image_path_generator(root_path_list), total=length):
+        img_path = os.path.join(path, name)
+        img = Image.open(img_path)
+
+        try:
+            exif_dict = piexif.load(img.info["exif"])
+            orientation = exif_dict["0th"].pop(piexif.ImageIFD.Orientation)
+            if orientation != 1:
+                print("{}:{}".format(orientation, img_path))
+        except Exception:
+            print("{} occured some wrong".format(img_path))
+
 
 
 if __name__ == "__main__":
-    # valid_checkup(["E:/训练数据/shudian/dingwei"])
-    postfix_checkup(["E:/Data/biandian/2020-biandian-liangpi/第二批"])
+    postfix_checkup(["E:/训练数据/shudian/jueyuanzi"])
+    # orientation_tag_checkup(["E:/Data/biandian/2020-biandian-liangpi/第二批"])

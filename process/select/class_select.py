@@ -34,5 +34,5 @@ def select_by_classes(root_path_list, classes=None):
 
 
 if __name__ == "__main__":
-    labels = ['ganta_02']
-    select_by_classes(["E:/Data/shudian/201912-wuhan/dingwei"], labels)
+    labels = ['ganta1']
+    select_by_classes(["E:/训练数据/shudian/ganta", "E:/训练数据/shudian/jueyuanzi"], labels)

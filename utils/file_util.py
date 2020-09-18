@@ -65,4 +65,5 @@ def delete_files(txt_path, annotations_folder="Annotations", images_folder="JPEG
 
 
 if __name__ == "__main__":
-    delete_files("../result/checkup_broken_images.txt")
+    # delete_files("../result/checkup_broken_images.txt")
+    cp_files("../result/select_by_classes.txt", "E:/Data/transit/biandian_liangpi_yw")

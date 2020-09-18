@@ -33,7 +33,12 @@ def label_classes_analysis(root_path_list, classes=None, plot_pie=False):
                 xml_number_select += 1
     # 打印统计信息
     print("{}/{} xmls contain required label".format(xml_number_select, xml_number_total))
+    # 按标签数量输出
     for item in sorted(label_quantity_per_class.items(), key=lambda k: k[1], reverse=True):
+        print("{}:{}".format(item[0], item[1]))
+    print("*" * 100)
+    # 按字母顺序输出
+    for item in sorted(label_quantity_per_class.items(), key=lambda k: k[0]):
         print("{}:{}".format(item[0], item[1]))
     # 绘制扇形图
     if plot_pie:
@@ -43,4 +48,7 @@ def label_classes_analysis(root_path_list, classes=None, plot_pie=False):
 
 if __name__ == "__main__":
     # label_analysis(["C:/Users/zxh/Desktop/jsxs_gjbs/jsxs_gjbs"], classes=["jsxs", "hxq_gjbs"])
-    label_classes_analysis(["E:/Data/shudian/201912-wuhan/导地线"])
+    # label_classes_analysis(["E:/训练数据/shudian/jueyuanzi/Annotations_200820",
+    #                         "E:/训练数据/shudian/ganta/normal/Annotations_200820",
+    #                         "E:/训练数据/shudian/ganta/redbox/Annotations_200820"])
+    label_classes_analysis(["E:/jizhongpeiyu_anno/wgs_5-7"])

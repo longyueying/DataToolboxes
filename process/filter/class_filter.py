@@ -13,7 +13,6 @@ def filter_classes(root_path_list, target_path, classes):
         target_file_path = os.path.join(target_path, filename)
         tree = ET.parse(ori_file_path)
         tree_root = tree.getroot()
-        print(tree_root)
         for obj in tree_root.findall('object'):
             cls = obj.find("name").text
             if cls not in classes:
@@ -22,8 +21,8 @@ def filter_classes(root_path_list, target_path, classes):
 
 
 if __name__ == "__main__":
-    root_path_list = ["F:/安监数据集/Annotations"]
-    target_path = "F:/安监数据集/Annotations_filter"
-    classes = ['wcgz', 'wcaqm', 'YanHuo', 'xy', 'yxxw', 'dmxw', 'ppxw']
+    root_path_list = ["E:/训练数据/shudian/jueyuanzi/Annotations_map"]
+    target_path = "E:/训练数据/shudian/jueyuanzi/Annotations_filter"
+    classes = ['ganta_02', 'jueyuanzi_01', 'jueyuanzi_02']
 
     filter_classes(root_path_list, target_path, classes)

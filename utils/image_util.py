@@ -1,6 +1,5 @@
 import os
-from tqdm import tqdm
-from analysis.data.image_analysis import get_image_number
+import hashlib
 
 
 def image_path_generator(root_path_list):
@@ -21,15 +20,11 @@ def image_path_generator(root_path_list):
                 yield current_path, current_name
 
 
-def image_rename(root_path_list):
-    length = get_image_number(root_path_list)
-    rename_file_number = 0
+def image_md5(image_path):
+    with open(image_path, 'rb') as f:
+        image_file = f.read()
+        return hashlib.md5(image_file).hexdigest()
 
-    for path, name in tqdm(image_path_generator(root_path_list), total=length):
-        if '.JPG' in name or '.JPEG' in name or '.jpeg' in name:
-            rename_file_number += 1
-            file_path = os.path.join(path, name)
-            file_path_rename = file_path.replace(".JPG", ".jpg").replace('.JPEG', '.jpg').replace('.jpeg', '.jpg')
-            os.rename(file_path, file_path_rename)
 
-    print("There are {}/{} images have be renamed".format(rename_file_number, length))
+if __name__ == "__main__":
+    print(image_md5("E:/Data/biandian/2019-base/JPEGImages/000001.jpg"))

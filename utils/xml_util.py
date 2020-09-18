@@ -20,8 +20,8 @@ def xml_path_generator(root_path_list):
                 yield current_path, current_name
 
 
-def classes_mapping(root_path, mapping_dict, signature):
-    for current_path, xml_name in xml_path_generator(root_path):
+def classes_mapping(root_path_list, mapping_dict, signature):
+    for current_path, xml_name in xml_path_generator(root_path_list):
         target_path = current_path + '_' + signature
         if not os.path.exists(target_path):
             os.makedirs(target_path)
@@ -39,5 +39,38 @@ def classes_mapping(root_path, mapping_dict, signature):
         tree.write(target_path)
 
 
+def dky2voc(root_path_list, signature='voc'):
+    for current_path, xml_name in xml_path_generator(root_path_list):
+        target_path = current_path + '_' + signature
+        if not os.path.exists(target_path):
+            os.makedirs(target_path)
+        source_file = os.path.join(current_path, xml_name)
+        target_path = os.path.join(target_path, xml_name)
+        tree = ET.parse(source_file)
+        tree_root = tree.getroot()
+        sum_element = tree_root.find("objectsum")
+        tree_root.remove(sum_element)
+        path_element = ET.SubElement(tree_root, "path")
+        path_element.text = os.path.join(current_path, xml_name)
+        source_element = ET.SubElement(tree_root, "source")
+        database_element = ET.SubElement(source_element, "database")
+        database_element.text = "xtyjy"
+        segmented_element = ET.SubElement(tree_root, "segmented")
+        segmented_element.text = str(0)
+        for obj in tree_root.iter('object'):
+            obj.remove(obj.find("Serial"))
+            code_element = obj.find("code")
+            name_element = ET.SubElement(obj, "name")
+            name_element.text = code_element.text
+            obj.remove(code_element)
+        tree.write(target_path)
+
+
 if __name__ == "__main__":
-    classes_mapping("../tmp", {"dxyw": "yw_gkxfw"}, "yw")
+    # mapping_dict = {"ganta": "ganta_02",
+    #                 "ganta_02_01": "ganta_02",
+    #                 "ganta_02_02": "ganta_02",
+    #                 "jyz_zb": "jueyuanzi_01",
+    #                 "jyz_wh": "jueyuanzi_02"}
+    # classes_mapping(["E:/训练数据/shudian/ganta", "E:/训练数据/shudian/jueyuanzi"], mapping_dict, "map")
+    dky2voc(["E:/Data/shudian/wgs_5-7"])

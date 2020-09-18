@@ -36,18 +36,18 @@ def dataset_divide(root_path_list, proportion, annotation_folder='Annotations', 
         file_path_list_test = np.array(file_path_list)[test_index]
 
     if dataset_type == 'mmdetection':
-        with open('../result/train.txt', 'w') as f:
+        with open('../result/train.txt', 'w', encoding='utf-8') as f:
             f.write('\n'.join(file_name_list_train))
-        with open('../result/val.txt', 'w') as f:
+        with open('../result/val.txt', 'w', encoding='utf-8') as f:
             f.write('\n'.join(file_name_list_val))
-        with open('../result/train_val.txt', 'w') as f:
+        with open('../result/train_val.txt', 'w', encoding='utf-8') as f:
             f.write('\n'.join(file_name_list_train))
             f.write('\n')
             f.write('\n'.join(file_name_list_val))
         if len(proportion) == 3:
-            with open('../result/test.txt', 'w') as f:
+            with open('../result/test.txt', 'w', encoding='utf-8') as f:
                 f.write('\n'.join(file_name_list_test))
 
 
 if __name__ == "__main__":
-    dataset_divide(['E:/训练数据/shudian/dingwei'], proportion=[0.9, 0.1], annotation_folder='Annotations', jpegimage_folder='JPEGImages')
+    dataset_divide(['E:/Data/yiwu/shudian/daodixian_yw_1'], proportion=[0.9, 0.1], annotation_folder='Annotations', jpegimage_folder='JPEGImages')
