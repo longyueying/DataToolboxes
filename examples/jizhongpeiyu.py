@@ -2,6 +2,7 @@ import shutil
 import os
 import pandas as pd
 import numpy as np
+from utils.image_util import image_path_generator
 
 
 def mv_xml():
@@ -41,4 +42,5 @@ def jzpy_stastic():
 
 
 if __name__ == "__main__":
-    jzpy_stastic()
+    # img_count()
+    pass

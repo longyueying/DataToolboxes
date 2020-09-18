@@ -19,11 +19,24 @@ def dup_hash(root_path_list):
         img_hash = image_md5(img_path)
         hash_dict.setdefault(img_hash, [])
         hash_dict[img_hash].append(img_path)
-    with open("../../result/dup_hash.json", "w") as f:
+    with open("../../result/new_dup_hash.json", "w") as f:
         json.dump(hash_dict, f, indent=4)
     print("总共{}张图片，去重后图片数量为{}".format(length, len(hash_dict)))
 
 
+def additions_analysis(json_base, json_new):
+    with open(json_base) as f:
+        hash_val_base = list(json.load(f).keys())
+    with open(json_new) as f:
+        hash_val_new = list(json.load(f).keys())
+    length_base = len(hash_val_base)
+    length_new = len(hash_val_new)
+    hash_val_base.extend(hash_val_new)
+    length_additions = len(set(hash_val_base)) - length_base
+    print("原有{},获取{},新增{}".format(length_base, length_new, length_additions))
+
+
 if __name__ == "__main__":
     # print(get_image_number(["E:/Data/shudian/201912-wuhan"]))
-    dup_hash(["E:/Data/shudian/wgs_5-7"])
+    # dup_hash(["E:/Data/shudian/201912-wuhan"])
+    additions_analysis("../../result/dup_hash.json", "../../result/new_dup_hash.json")
