@@ -75,20 +75,19 @@ if __name__ == "__main__":
     # classes_mapping(["E:/训练数据/shudian/ganta", "E:/训练数据/shudian/jueyuanzi"], mapping_dict, "map")
     # dky2voc(["E:/Data/shudian/wgs_5-7"])
     mapping_dict = {
-        "010000021": "ganta_yw",
-        "010000022": "ganta_yw",
-        "010000023": "ganta_yw",
-        "010100061": "ganta_yw",
-        "010300091": "ganta_yw",
-        "010000031": "ganta_xs",
-        "010001011": "ganta_xs",
-        "010002051": "ganta_xs",
-        "010003021": "ganta_xs",
-        "010100041": "ganta_xs",
-        "010101021": "ganta_xs",
-        "010200051": "ganta_xs",
-        "010201011": "ganta_xs"
+        "010000021": "ganta_02",
+        "010000022": "ganta_02",
+        "010000023": "ganta_02",
+        "010100061": "ganta_02",
+        "010300091": "ganta_02",
+        "010000031": "ganta_01",
+        "010001011": "ganta_01",
+        "010002051": "ganta_01",
+        "010003021": "ganta_01",
+        "010100041": "ganta_01",
+        "010101021": "ganta_01",
+        "010200051": "ganta_01",
+        "010201011": "ganta_01"
     }
-    classes_mapping(["E:/Data/shudian/wgs_5-7/jy202007/算法培育202007/杆塔",
-                     "E:/Data/shudian/wgs_5-7/jy202005/0605数据库导出/杆塔"],
+    classes_mapping(["E:/训练数据/shudian/jzpy_anno"],
                     mapping_dict, "ganta")

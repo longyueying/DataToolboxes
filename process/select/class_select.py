@@ -34,5 +34,19 @@ def select_by_classes(root_path_list, classes=None):
 
 
 if __name__ == "__main__":
-    labels = ['ganta1']
-    select_by_classes(["E:/训练数据/shudian/ganta", "E:/训练数据/shudian/jueyuanzi"], labels)
+    labels = [
+        "010000021",
+        "010000022",
+        "010000023",
+        "010100061",
+        "010300091",
+        "010000031",
+        "010001011",
+        "010002051",
+        "010003021",
+        "010100041",
+        "010101021",
+        "010200051",
+        "010201011"]
+    select_by_classes(["E:/Data/shudian/wgs_5-7/jy202007/算法培育202007/杆塔",
+                       "E:/Data/shudian/wgs_5-7/jy202005/0605数据库导出/杆塔"], labels)

@@ -8,7 +8,7 @@ from utils.image_util import image_path_generator
 def mv_xml():
     root_path = "E:/Data/shudian/wgs_5-7"
     target_root_path = "E:/jizhongpeiyu_anno/"
-    target_folder_signature = "voc"
+    target_folder_signature = "ganta"
     path_stack = [root_path]
 
     while len(path_stack) > 0:
@@ -18,8 +18,9 @@ def mv_xml():
             if os.path.isdir(tmp):
                 if target_folder_signature in tmp:
                     ind = tmp.find("wgs_5-7")
-                    target_path = target_root_path + tmp[ind:]
+                    target_path = target_root_path + tmp[ind:-4]
                     os.makedirs(target_path)
+                    print(target_path)
                     shutil.move(tmp, target_path)
                 else:
                     path_stack.append(tmp)
@@ -43,4 +44,4 @@ def jzpy_stastic():
 
 if __name__ == "__main__":
     # img_count()
-    pass
+    mv_xml()
