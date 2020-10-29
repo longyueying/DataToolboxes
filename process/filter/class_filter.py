@@ -21,8 +21,8 @@ def filter_classes(root_path_list, target_path, classes):
 
 
 if __name__ == "__main__":
-    root_path_list = ["E:/训练数据/shudian/jueyuanzi/Annotations_map"]
-    target_path = "E:/训练数据/shudian/jueyuanzi/Annotations_filter"
-    classes = ['ganta_02', 'jueyuanzi_01', 'jueyuanzi_02']
+    root_path_list = ["E:/训练数据/shudian/daodixian_total"]
+    target_path = "E:/训练数据/shudian/daodixian_total/jzpy_anno_daodixian_jzpy_filter"
+    classes = ['daodixian_01', 'daodixian_02', 'daodixian_05']
 
     filter_classes(root_path_list, target_path, classes)

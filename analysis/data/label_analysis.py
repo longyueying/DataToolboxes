@@ -4,11 +4,6 @@ from tqdm import tqdm
 from utils.xml_util import xml_path_generator
 
 
-def get_xml_number(root_path_list):
-    root_path_list = root_path_list.copy()
-    return sum(1 for _, _ in xml_path_generator(root_path_list))
-
-
 def label_classes_analysis(root_path_list, classes=None, plot_pie=False):
     # 初始化
     root_path_list = root_path_list.copy()
@@ -51,4 +46,4 @@ if __name__ == "__main__":
     # label_classes_analysis(["E:/训练数据/shudian/jueyuanzi/Annotations_200820",
     #                         "E:/训练数据/shudian/ganta/normal/Annotations_200820",
     #                         "E:/训练数据/shudian/ganta/redbox/Annotations_200820"])
-    label_classes_analysis(["E:/jizhongpeiyu_anno/wgs_5-7"])
+    label_classes_analysis(["E:/测试数据/shudian/dingwei"])

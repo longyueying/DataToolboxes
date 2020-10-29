@@ -66,6 +66,11 @@ def dky2voc(root_path_list, signature='voc'):
         tree.write(target_path)
 
 
+def get_xml_number(root_path_list):
+    root_path_list = root_path_list.copy()
+    return sum(1 for _, _ in xml_path_generator(root_path_list))
+
+
 if __name__ == "__main__":
     # mapping_dict = {"ganta": "ganta_02",
     #                 "ganta_02_01": "ganta_02",
@@ -74,20 +79,49 @@ if __name__ == "__main__":
     #                 "jyz_wh": "jueyuanzi_02"}
     # classes_mapping(["E:/训练数据/shudian/ganta", "E:/训练数据/shudian/jueyuanzi"], mapping_dict, "map")
     # dky2voc(["E:/Data/shudian/wgs_5-7"])
+    # 集中培育杆塔
+    # mapping_dict = {
+    #     "010000021": "ganta_02",
+    #     "010000022": "ganta_02",
+    #     "010000023": "ganta_02",
+    #     "010100061": "ganta_02",
+    #     "010300091": "ganta_02",
+    #     "010000031": "ganta_01",
+    #     "010001011": "ganta_01",
+    #     "010002051": "ganta_01",
+    #     "010003021": "ganta_01",
+    #     "010100041": "ganta_01",
+    #     "010101021": "ganta_01",
+    #     "010200051": "ganta_01",
+    #     "010201011": "ganta_01"
+    # }
+    # classes_mapping(["E:/训练数据/shudian/jzpy_anno"],
+    #                 mapping_dict, "ganta")
+    # 201912杆塔
     mapping_dict = {
-        "010000021": "ganta_02",
-        "010000022": "ganta_02",
-        "010000023": "ganta_02",
-        "010100061": "ganta_02",
-        "010300091": "ganta_02",
-        "010000031": "ganta_01",
-        "010001011": "ganta_01",
-        "010002051": "ganta_01",
-        "010003021": "ganta_01",
-        "010100041": "ganta_01",
-        "010101021": "ganta_01",
-        "010200051": "ganta_01",
-        "010201011": "ganta_01"
+        "ganta": "ganta_02",
+        "ganta_02_01": "ganta_02",
+        "ganta_02_02": "ganta_02"
     }
-    classes_mapping(["E:/训练数据/shudian/jzpy_anno"],
-                    mapping_dict, "ganta")
+    # 集中培育导地线转换
+    mapping_dict_daodixian_jzpy = {
+        "020000011": "daodixian_01",
+        "020000012": "daodixian_01",
+        "020001011": "daodixian_01",
+        "020100011": "daodixian_01",
+        "020100012": "daodixian_01",
+        "020000031": "daodixian_01",
+        "020001031": "daodixian_01",
+        "020000021": "daodixian_01",
+        "020001021": "daodixian_01",
+        "020100021": "daodixian_01",
+        "020100022": "daodixian_01",
+        "020200021": "daodixian_01",
+        "020000111": "daodixian_02",
+        "020001061": "daodixian_02",
+        "020100051": "daodixian_02",
+        "020000091": "daodixian_05",
+        "020001051": "daodixian_05"
+    }
+    classes_mapping(["E:/训练数据/shudian/daodixian/biandian_daodixian_02"],
+                    {"yw_gkxfw": "daodixian_02"}, "daodixian_02")
