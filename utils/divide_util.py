@@ -50,4 +50,4 @@ def dataset_divide(root_path_list, proportion, annotation_folder='Annotations', 
 
 
 if __name__ == "__main__":
-    dataset_divide(['E:/训练数据/shudian/daodixian/daodixian_total'], proportion=[0.9, 0.1], annotation_folder='Annotations', jpegimage_folder='JPEGImages')
+    dataset_divide(['E:/TrainData/biandian/diyipi'], proportion=[0.9, 0.1], annotation_folder='Annotations', jpegimage_folder='JPEGImages')

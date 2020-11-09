@@ -50,4 +50,10 @@ if __name__ == "__main__":
     #     "010201011"]
     # select_by_classes(["E:/Data/shudian/wgs_5-7/jy202007/算法培育202007/杆塔",
     #                    "E:/Data/shudian/wgs_5-7/jy202005/0605数据库导出/杆塔"], labels)
-    select_by_classes(["E:/测试数据/shudian/dingwei"], ['daodixian_01', 'daodixian_02', 'daodixian_05'])
+    # select_by_classes(["E:/测试数据/shudian/dingwei"], ['daodixian_01', 'daodixian_02', 'daodixian_05'])
+    cls = ['bj_bpmh', 'bj_bpps', 'bj_wkps', 'jyz_lw', 'jyz_pl', 'sly_bjbmyw', 'sly_dmyw',
+           'jsxs', 'hxq_gjtps', 'hxq_yfps', 'xmbhyc', 'yw_gkxfw', 'yw_nc', 'mcqdmsh', 'gbps',
+           'gbqs', 'gjptwss', 'bmwh', 'dthtps', 'yxdghsg',
+           'yxcr', 'wcaqm', 'wcgz', 'wpdaqs', 'xy', 'rydd', 'hzyw', 'sndmjs', 'qmls', 'wdls', 'xdwcr',
+           'bjdsyc', 'ywzt_yfyc', 'ywzt_ywzsjyc', 'hxq_gjbs', 'kgg_ybh', 'kgg_ybf']
+    select_by_classes(["E:/Data/biandian/2020-biandian-liangpi/第一批"], cls)

@@ -22,4 +22,4 @@ def rm_point_line(root_path_list):
 
 
 if __name__ == "__main__":
-    rm_point_line(["E:/训练数据/shudian/daodixian/daodixian_total"])
+    rm_point_line(["E:/训练数据/biandian/diyipi"])

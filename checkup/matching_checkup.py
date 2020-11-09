@@ -27,5 +27,5 @@ def image_matching_inspect(root_path_list, annotations_folder='Annotations', ima
 
 
 if __name__ == "__main__":
-    for file in image_matching_inspect(["E:/训练数据/shudian/jueyuanzi"], annotations_folder='Annotations', images_folder='JPEGImages'):
+    for file in image_matching_inspect(["E:/训练数据/biandian/dierpi"], annotations_folder='Annotations', images_folder='JPEGImages'):
         print(file)

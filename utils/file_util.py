@@ -66,6 +66,6 @@ def delete_files(txt_path, annotations_folder="Annotations", images_folder="JPEG
 
 if __name__ == "__main__":
     # delete_files("../result/checkup_broken_images.txt")
-    cp_files("../result/select_by_classes.txt", "E:/daodixian-dingwei",
-             annotations_folder="Annotations", images_folder="JPEGImages")
-    # delete_files("../result/select_by_classes.txt")
+    # cp_files("../result/select_by_classes.txt", "E:/TrainData/biandian/wrong",
+    #          annotations_folder="Annotations", images_folder="JPEGImages")
+    delete_files("../result/select_by_classes.txt")

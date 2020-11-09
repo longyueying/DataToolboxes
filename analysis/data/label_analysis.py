@@ -46,4 +46,12 @@ if __name__ == "__main__":
     # label_classes_analysis(["E:/训练数据/shudian/jueyuanzi/Annotations_200820",
     #                         "E:/训练数据/shudian/ganta/normal/Annotations_200820",
     #                         "E:/训练数据/shudian/ganta/redbox/Annotations_200820"])
-    label_classes_analysis(["E:/测试数据/shudian/dingwei"])
+    cls = ['bj_bpmh', 'bj_bpps', 'bj_wkps', 'jyz_lw', 'jyz_pl', 'sly_bjbmyw', 'sly_dmyw',
+     'jsxs', 'hxq_gjtps', 'hxq_yfps', 'xmbhyc', 'yw_gkxfw', 'yw_nc', 'mcqdmsh', 'gbps',
+     'gbqs', 'gjptwss', 'bmwh', 'dthtps', 'yxdghsg',
+     'yxcr', 'wcaqm', 'wcgz', 'wpdaqs', 'xy', 'rydd', 'hzyw', 'sndmjs', 'qmls', 'wdls', 'xdwcr',
+     'bjdsyc', 'ywzt_yfyc', 'ywzt_ywzsjyc', 'hxq_gjbs', 'kgg_ybh', 'kgg_ybf']
+
+    # label_classes_analysis(["E:/Data/biandian/2020-biandian-liangpi/第二批/dierpixunlianyangben",
+    #                         "E:/Data/biandian/2020-biandian-liangpi/第一批"], classes=cls, plot_pie=True)
+    label_classes_analysis(["E:/训练数据/biandian/dierpi/filter"])
