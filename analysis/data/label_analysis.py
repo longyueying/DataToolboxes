@@ -8,6 +8,9 @@ def label_classes_analysis(root_path_list, classes=None, plot_pie=False):
     # 初始化
     root_path_list = root_path_list.copy()
     label_quantity_per_class = {}
+    if classes is not None:
+        for item in classes:
+            label_quantity_per_class[item] = 0
     xml_number_select = 0
     xml_number_total = 0
     # 遍历xml文件
@@ -36,9 +39,13 @@ def label_classes_analysis(root_path_list, classes=None, plot_pie=False):
     for item in sorted(label_quantity_per_class.items(), key=lambda k: k[0]):
         print("{}:{}".format(item[0], item[1]))
     # 绘制扇形图
-    if plot_pie:
-        pie_graph = Pie()
-        pie_graph.pic_for_dict(label_quantity_per_class)
+    # if plot_pie:
+    #     pie_graph = Pie()
+    #     pie_graph.pic_for_dict(label_quantity_per_class)
+    with open("../../result/label_analysis.txt", 'w', encoding='utf-8') as f:
+        for k, v in label_quantity_per_class.items():
+            f.write("{},{}\n".format(k, v))
+
 
 
 if __name__ == "__main__":
@@ -54,4 +61,4 @@ if __name__ == "__main__":
 
     # label_classes_analysis(["E:/Data/biandian/2020-biandian-liangpi/第二批/dierpixunlianyangben",
     #                         "E:/Data/biandian/2020-biandian-liangpi/第一批"], classes=cls, plot_pie=True)
-    label_classes_analysis(["E:/训练数据/biandian/dierpi/filter"])
+    label_classes_analysis(["E:/TrainData/biandian/diyipi"])
