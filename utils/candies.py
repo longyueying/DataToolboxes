@@ -14,6 +14,5 @@ def eval_reuslt_pivot(eval_result_file="../result/eval_result.csv"):
     df.to_csv("../result/eval_result_T.csv", header=False)
 
 
-
 if __name__ == "__main__":
     eval_reuslt_pivot()

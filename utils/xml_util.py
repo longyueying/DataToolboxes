@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 import os
+import copy
 
 
 def xml_path_generator(root_path_list):
@@ -20,7 +21,7 @@ def xml_path_generator(root_path_list):
                 yield current_path, current_name
 
 
-def classes_mapping(root_path_list, mapping_dict, signature):
+def classes_mapping(root_path_list, mapping_dict, signature, retain=False):
     for current_path, xml_name in xml_path_generator(root_path_list):
         target_path = current_path + '_' + signature
         if not os.path.exists(target_path):
@@ -33,8 +34,15 @@ def classes_mapping(root_path_list, mapping_dict, signature):
         for obj in tree_root.iter('object'):
             obj_class = obj.find("name")
             if obj_class.text in mapping_dict.keys():
-                new_class = mapping_dict[obj_class.text]
-                obj_class.text = new_class
+                if retain:
+                    dupe = copy.deepcopy(obj)
+                    dupe_class = dupe.find("name")
+                    new_class = mapping_dict[dupe_class.text]
+                    dupe_class.text = new_class
+                    tree_root.append(dupe)
+                else:
+                    new_class = mapping_dict[obj_class.text]
+                    obj_class.text = new_class
         print(target_path)
         tree.write(target_path)
 
@@ -123,5 +131,6 @@ if __name__ == "__main__":
         "020000091": "daodixian_05",
         "020001051": "daodixian_05"
     }
-    classes_mapping(["E:/训练数据/shudian/daodixian/biandian_daodixian_02"],
-                    {"yw_gkxfw": "daodixian_02"}, "daodixian_02")
+
+    classes_mapping(["E:/TrainData/biandian/diyipi"],
+                    {"qmls": "ls", "wdls": "ls"}, "ls", True)
